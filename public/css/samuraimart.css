@@ -185,3 +185,42 @@ body {
   th, td {
     background-color: #f8fafc !important;
   }
+
+  .samuraimart-star-rating {
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    color: #ccc; /* 星の背景色（灰色） */
+  }
+  
+  .samuraimart-star-rating::before {
+    content: "★★★★★";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ccc;
+  }
+  
+  .samuraimart-star-rating::after {
+    content: "★★★★★";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #4caf50; /* 星の前景色（緑色） */
+    overflow: hidden;
+    width: 0;
+  }
+  
+  /* data-rate の値ごとに幅を変える */
+  
+  .samuraimart-star-rating[data-rate="5"]::after { width: 100%; }
+  .samuraimart-star-rating[data-rate="4.5"]::after { width: 90%; }
+  .samuraimart-star-rating[data-rate="4"]::after { width: 80%; }
+  .samuraimart-star-rating[data-rate="3.5"]::after { width: 70%; }
+  .samuraimart-star-rating[data-rate="3"]::after { width: 60%; }
+  .samuraimart-star-rating[data-rate="2.5"]::after { width: 50%; }
+  .samuraimart-star-rating[data-rate="2"]::after { width: 40%; }
+  .samuraimart-star-rating[data-rate="1.5"]::after { width: 30%; }
+  .samuraimart-star-rating[data-rate="1"]::after { width: 20%; }
+  .samuraimart-star-rating[data-rate="0.5"]::after { width: 10%; }
+  .samuraimart-star-rating[data-rate="0"]::after { width: 0; }

@@ -16,6 +16,17 @@
                <h1 class="">
                    {{$product->name}}
                </h1>
+               <div class="mb-3">
+               @for ($i = 1; $i <= 5; $i++)
+               @if ($product->average_for_star >= $i)
+               <i class="fas fa-star text-warning"></i> {{-- 塗りつぶし星 --}}
+               @elseif ($product->average_for_star >= $i - 0.5)
+               <i class="fas fa-star-half-alt text-warning"></i> {{-- 半分の星 --}}
+               @else               
+               <i class="far fa-star text-warning"></i> {{-- 空の星 --}}
+               @endif
+               @endfor
+               </div>
                <p class="">
                    {{$product->description}}
                </p>
@@ -81,7 +92,13 @@
         <div class="row">
                 @foreach($reviews as $review)
                 <div class="offset-md-5 col-md-5">
-                    <h3 class="review-score-color">{{ str_repeat('★', $review->score) }}</h3>
+                    <h3 class="review-score-color">@for ($i = 1; $i <= 5; $i++)
+                    @if ($review->score >= $i)
+                    <i class="fas fa-star text-warning"></i>
+                    @else
+                    <i class="far fa-star text-warning"></i>
+                    @endif
+                    @endfor</h3>
                     <p class="h3">{{$review->title}}</p>
                     <p class="h3">{{$review->content}}</p>
                     <label>{{ $review->created_at }}

@@ -32,6 +32,13 @@ class ProductController extends Controller
             $category = null;
             $major_category = null;
         }
+
+        foreach ($products as $product) {
+            $avg = $product->reviews->avg('score');
+            $product->average_for_star = round($avg *2) / 2;
+            $product->average_for_text = round($avg, 1);
+        }
+
         $categories = Category::all();
         $major_categories = MajorCategory::all();
 
@@ -107,7 +114,13 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $reviews = $product->reviews()->get();
+        $product->load('reviews');
+
+        $avg = $product->reviews->avg('score');
+        $product->average_for_star = round($avg * 2) / 2;
+        $product->average_for_text = round($avg, 1);
+
+        $reviews = $product->reviews;
  
         return view('products.show', compact('product', 'reviews'));
     }

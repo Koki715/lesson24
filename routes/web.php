@@ -25,8 +25,8 @@ Route::get('/', [WebController::class, 'index'])->name('top');
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('products', ProductController::class);
+// Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('products', ProductController::class); {
 
     Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
@@ -57,4 +57,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('checkout', 'store')->name('checkout.store');
         Route::get('checkout/success', 'success')->name('checkout.success');
     });
-});
+};

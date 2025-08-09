@@ -22,7 +22,10 @@
                     <div class="col-12">
                         <p class="samuraimart-product-label mt-2">
                             {{ $recommend_product->name }}<br>
-                            <label>¥{{ $recommend_product->price }}</label>
+                            <label>¥{{ $recommend_product->price }}</label><br>
+
+                            <x-review-stars :rating="$product->reviews->avg('score')" />
+
                         </p>
                     </div>
                 </div>
@@ -47,7 +50,13 @@
                     <div class="col-12">
                         <p class="samuraimart-product-label mt-2">
                             {{ $recently_product->name }}<br>
-                            <label>¥{{ $recently_product->price }}</label>
+                            <label>¥{{ $recently_product->price }}</label><br>
+
+                            <span class="samuraimart-star-rating"
+                                style="--rating: {{ $recently_product->average_for_text ?? 0 }};"
+                                aria-label="平均評価 {{ $recently_product->average_for_text ?? 0 }} 点"></span>
+
+    <small class="ml-2">{{ $recommend_product->average_for_text ?? 0 }} 点</small>
                         </p>
                     </div>
                 </div>
